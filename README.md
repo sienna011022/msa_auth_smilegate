@@ -72,7 +72,7 @@
 
 ### Auth
 
-- JWT기반  Access Token 발급
+- JWT 기반  Access Token 발급
 - JWT 기반 Refresh Token 발급
 
 ### User
@@ -93,4 +93,7 @@
 
 ## ✨구현 리스트
 
-(to be continue)
+* User Server
+- [ ] 회원가입 기능
+- [ ] 비밀번호 암호화
+- [ ] 회원가입 예외처리
