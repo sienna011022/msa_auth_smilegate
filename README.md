@@ -90,7 +90,12 @@
 
 ## ✨구현 리스트
 
-* User Server
-- [ ] 회원가입 기능
-- [ ] 비밀번호 암호화
+* FE
+- [X] 회원가입 페이지 view
+![image](https://user-images.githubusercontent.com/90383376/206737250-a655a078-fcad-4798-9198-d5941219e568.png)
+
+* User BE
+- [X] 회원가입 기능
+- [X] 비밀번호 암호화
+- [X] 비밀번호 유효성 체크
 - [ ] 회원가입 예외처리
