@@ -84,9 +84,7 @@
 ## ✨ 프로젝트 진행 포스팅
 
 > 프로젝트 개발 과정에서 다양한 고민과 좌충우돌을 적은 포스팅이며 링크로 연결되어 있습니다.
-> 
-
-(to be continue)
+- [어떤 비밀번호 알고리즘을 사용할까?](https://sienna1022.tistory.com/entry/%EC%96%B4%EB%96%A4-%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-%EC%8D%A8%EC%95%BC-%ED%95%A0%EA%B9%8C)
 
 ## ✨구현 리스트
 
