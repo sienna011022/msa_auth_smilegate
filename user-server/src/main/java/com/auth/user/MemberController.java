@@ -1,14 +1,13 @@
 package com.auth.user;
 
+import com.auth.user.web.dto.LoginRequest;
 import com.auth.user.web.dto.MemberCreateRequest;
+import com.auth.user.web.service.LoginService;
 import com.auth.user.web.service.SignUpService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -17,10 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberController {
 
     private final SignUpService signUpService;
+    private final LoginService loginService;
 
     @PostMapping("/signUp")
     public void signUp(@RequestBody MemberCreateRequest request) {
-        signUpService.createCareer(request);
+        signUpService.createMember(request);
+    }
+
+    @GetMapping("/login")
+    public void login(@RequestBody LoginRequest request) {
+        loginService.login(request);
     }
 
 }

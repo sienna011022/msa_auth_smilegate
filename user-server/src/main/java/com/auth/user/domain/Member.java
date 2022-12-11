@@ -1,5 +1,6 @@
 package com.auth.user.domain;
 
+import com.auth.user.web.dto.LoginRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,9 +32,6 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column(length = 16, unique = true)
-    private String salt;
-
 
     @Builder
     private Member(Long id, LocalDateTime createdAt, LocalDateTime updatedAt, String memberId, String password, String name, String email, Role role) {
@@ -43,16 +41,15 @@ public class Member extends BaseEntity {
         hasText(name, "이름을 입력하세요");
         hasText(password, "비밀번호를 입력하세요");
         hasText(email, "이메일을 입력하세요");
-
-        EncryptResult encryptResult = EncryptFactory.encrypt(password);
-
         this.memberId = memberId;
-        this.password = encryptResult.encryptPassword();
-        this.salt = encryptResult.salt();
+        this.password = PasswordFactory.encryptPassword(password);
         this.name = name;
         this.email = email;
         this.role = role;
     }
 
+    public boolean isValid(LoginRequest request){
+        return PasswordFactory.isValid(request.getPassword(),this.password);
+    }
 
 }
