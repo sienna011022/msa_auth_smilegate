@@ -13,9 +13,12 @@ public class LoginService {
 
     private final MemberRepository memberRepository;
 
+    private final FeignCommunicator authCommunicator;
+
     @Transactional
-    public boolean login(LoginRequest request) {
+    public String initialLogin(LoginRequest request) {
         Member member = memberRepository.findByMemberId(request.getMemberId()).get();
-        return member.isValid(request);
+        member.isValid(request);
+       return authCommunicator.createJwt(request);
     }
 }

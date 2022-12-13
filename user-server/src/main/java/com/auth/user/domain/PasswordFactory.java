@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Collections;
+
 @RequiredArgsConstructor
 public class PasswordFactory {
     private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
@@ -13,7 +15,7 @@ public class PasswordFactory {
     }
 
     public static boolean isValid(String inputPassword, String savedPassword) {
-        if(!PASSWORD_ENCODER.matches(inputPassword, savedPassword)){
+        if (!PASSWORD_ENCODER.matches(inputPassword, savedPassword)) {
             throw new RuntimeException();
         }
         return true;

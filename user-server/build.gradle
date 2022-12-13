@@ -6,7 +6,16 @@ plugins {
 
 group = 'com.auth'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+
+ext {
+    set('springCloudVersion', "2021.0.3")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
 
 repositories {
     mavenCentral()
@@ -32,6 +41,9 @@ dependencies {
 
     //security
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    //feign
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 }
 
 tasks.named('test') {
