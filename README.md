@@ -27,11 +27,13 @@
 | 클린코드에 대한 경험 부족 | TDD 적용 및 OOP관점에서 의미 있는 코드 짜기                                             |
 
 
-## ✨플로우 차트 & 시퀀스 다이어그램
-* 로그인 플로우 차트
-![img.png](img.png)
+## ✨플로우 차트 & 시스템 아키텍처
 * 시스템 아키텍처
-![img_4.png](img_4.png)
+![image](https://user-images.githubusercontent.com/90383376/207228855-190cd352-62d0-4847-8cdd-f71e6dcd059a.png)
+* 로그인 플로우 차트
+![image](https://user-images.githubusercontent.com/90383376/207228872-4cae3609-9381-4e72-9578-6d4b9286dd7c.png)
+
+
 ## ✨기술 스택
 
 > 해당 프로젝트를 수행하며 사용할 기술 스택입니다.
