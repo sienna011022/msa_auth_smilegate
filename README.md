@@ -26,14 +26,12 @@
 | 성능테스트 경험 부족 | [부하 테스트 목표] 로그인 동시접속자 수 = 600명 , 응답 시간  : 3s이내 ,목표 TPS: 200TPS           |
 | 클린코드에 대한 경험 부족 | TDD 적용 및 OOP관점에서 의미 있는 코드 짜기                                             |
 
-## ✨세부 계획
 
-![Untitled](SMILEGATE%20%E1%84%80%E1%85%B5%E1%86%B7%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B2%E1%86%AB%E2%80%99S%20DEV%20CAMP%20428ffffff89846cbb5317cb1c17e830d/Untitled.png)
-
-## ✨기술 아키텍처
-
-![https://user-images.githubusercontent.com/90383376/205441835-33c45923-602a-41aa-a295-9cf4a7e07833.png](https://user-images.githubusercontent.com/90383376/205441835-33c45923-602a-41aa-a295-9cf4a7e07833.png)
-
+## ✨플로우 차트 & 시퀀스 다이어그램
+* 로그인 플로우 차트
+![img.png](img.png)
+* 시스템 아키텍처
+![img_4.png](img_4.png)
 ## ✨기술 스택
 
 > 해당 프로젝트를 수행하며 사용할 기술 스택입니다.
@@ -88,17 +86,25 @@
 
 ## ✨구현 리스트
 
-* FE
-- [X] 회원가입 페이지 view
-![image](https://user-images.githubusercontent.com/90383376/206737250-a655a078-fcad-4798-9198-d5941219e568.png)
-
-* User BE
+* User Server
 - [X] 회원가입 기능
 - [X] 비밀번호 암호화
 - [X] 비밀번호 유효성 체크
 - [ ] 회원가입 예외처리
-- [ ] Auth Server에서 요청한 정보를 토대로 유효성 검증
+- [X] 로그인 기능
+- [ ] Auth Server에 토큰 발급 요청
 
-* Auth BE
-- [ ] 요청 온 정보를 토대로 User Server에 검증 요청
-- [ ] 
+* Auth Server
+- [ ] JWT access token 발급
+- [ ] JWT refresh token 발급
+- [ ] 요청 온 JWT 유효성 검사
+
+* GateWay
+- [ ] 각 모듈 라우팅
+- [ ] 요청 Header에서 JWT 존재 여부 검사
+
+* Front Server
+- [X] 회원가입 페이지
+![image](https://user-images.githubusercontent.com/90383376/206737250-a655a078-fcad-4798-9198-d5941219e568.png)
+- [ ] JWT 헤더에 포함 후 요청
+- [ ] 로그인 페이지
