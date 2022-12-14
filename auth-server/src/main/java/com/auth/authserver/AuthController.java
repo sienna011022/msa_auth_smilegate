@@ -15,7 +15,7 @@ public class AuthController {
 
     private final JwtTokenFactory jwtTokenFactory;
 
-    @PostMapping("/createJwt")
+    @PostMapping("/newJwt")
     public Map<String, String> createJwt(@RequestBody LoginRequest loginRequest) {
         Map<String, String> tokens = jwtTokenFactory.generateToken(loginRequest);
         return tokens;

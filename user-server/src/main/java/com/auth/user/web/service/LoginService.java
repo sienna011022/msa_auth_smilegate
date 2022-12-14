@@ -16,9 +16,9 @@ public class LoginService {
     private final FeignCommunicator authCommunicator;
 
     @Transactional
-    public String initialLogin(LoginRequest request) {
+    public String login(LoginRequest request) {
         Member member = memberRepository.findByMemberId(request.getMemberId()).get();
         member.isValid(request);
-       return authCommunicator.createJwt(request);
+        return authCommunicator.createJwt(request);
     }
 }
