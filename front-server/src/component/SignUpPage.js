@@ -33,7 +33,7 @@ export default function SignUpPage() {
 
     const signUp = () => {
         if (validPassword()) {
-            axios.post("members/signUp", {
+            axios.post("user/members/signUp", {
                 email: email,
                 name: name,
                 password: password,

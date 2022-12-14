@@ -14,7 +14,7 @@ export default function LoginPage() {
         setPassword(event.currentTarget.value)
     }
     const login = () => {
-            axios.post("members/login", {
+            axios.post("/user/members/login", {
                 password: password,
                 memberId: memberId,
             }).then(r => console.log(r))
