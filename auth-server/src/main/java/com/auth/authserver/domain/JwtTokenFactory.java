@@ -28,7 +28,6 @@ public class JwtTokenFactory {
     }
 
     public Map<String, String> generateToken(LoginRequest loginRequest) {
-
         Claims claims = makeClaims(loginRequest);
         Map<String, String> tokens = new HashMap();
         Date now = new Date();
