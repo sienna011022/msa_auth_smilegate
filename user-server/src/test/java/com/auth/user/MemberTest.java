@@ -39,4 +39,5 @@ public class MemberTest {
         assertThatThrownBy(() -> errorRequest.toMember()).isInstanceOf(IllegalArgumentException.class);
     }
 
+
 }

@@ -1,10 +1,9 @@
 package com.auth.user.domain;
 
+import com.auth.user.exception.IllegalPasswordException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Collections;
 
 @RequiredArgsConstructor
 public class PasswordFactory {
@@ -16,7 +15,7 @@ public class PasswordFactory {
 
     public static boolean isValid(String inputPassword, String savedPassword) {
         if (!PASSWORD_ENCODER.matches(inputPassword, savedPassword)) {
-            throw new RuntimeException();
+            throw new IllegalPasswordException("비밀번호가 일치하지 않습니다");
         }
         return true;
 

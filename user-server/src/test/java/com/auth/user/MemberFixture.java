@@ -31,6 +31,18 @@ public class MemberFixture {
         return request;
     }
 
+    public static Member createMemberByMemberId(String memberId) {
+        Member request = Member.builder()
+            .memberId(memberId)
+            .name("kimSungYoon")
+            .email("sienna011022@naver.com")
+            .password("password")
+            .role(Role.GUEST)
+            .build();
+
+        return request;
+    }
+
 
     public static LoginRequest createLoginRequest() {
         LoginRequest request = LoginRequest.builder()
