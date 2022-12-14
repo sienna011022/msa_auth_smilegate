@@ -92,17 +92,23 @@
 - [X] 회원가입 기능
 - [X] 비밀번호 암호화
 - [X] 비밀번호 유효성 체크
-- [ ] 회원가입 예외처리
+- [X] 회원 정보를 찾을 수 없다면 예외 발생
+- [X] 비밀번호가 일치하지 않으면 예외 발생
+- [ ] 아이디가 이미 존재한다면 예외 발생
 - [X] 로그인 기능
-- [ ] Auth Server에 토큰 발급 요청
+- [X] Auth Server에 토큰 발급 요청
+- [ ] Refresh Token 저장
 
 * Auth Server
-- [ ] JWT access token 발급
-- [ ] JWT refresh token 발급
-- [ ] 요청 온 JWT 유효성 검사
+- [X] JWT access token 발급
+- [X] JWT refresh token 발급
+- [X] 요청 온 access token 유효성 검사
+- [ ] 요청 온 refresh token 유효성 검사
+- [ ] 요청 온 refresh token 존재여부 user server에 검증 요청
+- [ ] access token 재발급
 
 * GateWay
-- [ ] 각 모듈 라우팅
+- [X] 각 모듈 라우팅
 - [ ] 요청 Header에서 JWT 존재 여부 검사
 
 * Front Server
