@@ -97,15 +97,20 @@
 - [ ] 아이디가 이미 존재한다면 예외 발생
 - [X] 로그인 기능
 - [X] Auth Server에 토큰 발급 요청
-- [ ] Refresh Token 저장
 
 * Auth Server
 - [X] JWT access token 발급
 - [X] JWT refresh token 발급
 - [X] 요청 온 access token 유효성 검사
 - [ ] 요청 온 refresh token 유효성 검사
-- [ ] 요청 온 refresh token 존재여부 user server에 검증 요청
-- [ ] access token 재발급
+- [X] refresh Token 저장 시 UUID를 발급하여 PK로 지정
+- [X] 클라이언트에게 refresh Token이 아닌 UUID(DB의 PK)를 반환한다.
+- [ ] 요청 온 UUID를 통해 DB접근 후 , refresh token 유효성을 검증한다.
+- [ ] 유효할 시 , access token 재발급
+- [ ] access token은 만료, refresh token은 유효 => access token 재발급
+- [ ] access token은 만료, refresh token 만료 => 둘 다 삭제 후 재 로그인
+- [ ] access token 유효 , refresh token 만료 =>  에러
+- [ ] access token은 유효 , refresh token 유효  => 인증 성공 
 
 * GateWay
 - [X] 각 모듈 라우팅
