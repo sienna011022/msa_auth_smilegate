@@ -15,11 +15,9 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final JwtTokenFactory jwtTokenFactory;
-
     private final TokenService tokenService;
 
-    @PostMapping("/createJwt")
+    @PostMapping("/token")
     public Map<String, String> createJwt(@RequestBody LoginRequest loginRequest) {
         Map<String, String> tokens = tokenService.createJWT(loginRequest);
         return tokens;

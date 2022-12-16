@@ -84,7 +84,6 @@ public class JwtTokenFactory {
             .compact();
     }
 
-
     private void isSameSubject(Jws<Claims> claims, String memberId) {
         if (!claims.getBody().getSubject().equals(memberId)) {
             throw new NotSameMemberException("요청하신 토큰과 다른 사용자입니다");

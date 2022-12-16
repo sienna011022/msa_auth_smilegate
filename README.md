@@ -106,7 +106,7 @@
 - [X] refresh Token 저장 시 UUID를 발급하여 PK로 지정
 - [X] 클라이언트에게 refresh Token이 아닌 UUID(DB의 PK)를 반환한다.
 - [X] 요청 온 UUID를 통해 DB접근 후 , refresh token 유효성을 검증한다.
-- [ ] 유효할 시 , access token 재발급
+- [X] 유효할 시 , access token 재발급
 - [ ] access token은 만료, refresh token은 유효 => access token 재발급
 - [ ] access token은 만료, refresh token 만료 => 둘 다 삭제 후 재 로그인
 - [ ] access token 유효 , refresh token 만료 =>  에러
