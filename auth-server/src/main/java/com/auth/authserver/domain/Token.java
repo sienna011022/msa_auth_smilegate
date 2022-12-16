@@ -22,6 +22,7 @@ public class Token {
     @Column(name = "refresh_token")
     private String token;
     @Id
+    @Column(columnDefinition = "BINARY(16)")
     private UUID uuid;
 
     @CreatedDate
@@ -32,7 +33,7 @@ public class Token {
 
     public Token(String token) {
         this.token = token;
-        this.uuid = UUID.randomUUID();
+        this.uuid = createUUID();
     }
 
     public static Token of(String refreshToken) {
@@ -42,17 +43,20 @@ public class Token {
     public UUID uuid(){
         return uuid;
     }
+    public String token(){
+        return token;
+    }
 
-//    private UUID createUUID() {
-//        UUID uuid = Generators.timeBasedGenerator().generate();
-//        String[] uuidArr = uuid.toString().split(UUID_SPLIT_REGEX);
-//        String uuidStr = uuidArr[2] + uuidArr[1] + uuidArr[0] + uuidArr[3] + uuidArr[4];
-//        StringBuffer sb = new StringBuffer(uuidStr);
-//        sb.insert(8, UUID_SPLIT_REGEX);
-//        sb.insert(13, UUID_SPLIT_REGEX);
-//        sb.insert(18, UUID_SPLIT_REGEX);
-//        sb.insert(23, UUID_SPLIT_REGEX);
-//        return UUID.fromString(sb.toString());
-//    }
+    private UUID createUUID() {
+        UUID uuid = Generators.timeBasedGenerator().generate();
+        String[] uuidArr = uuid.toString().split(UUID_SPLIT_REGEX);
+        String uuidStr = uuidArr[2] + uuidArr[1] + uuidArr[0] + uuidArr[3] + uuidArr[4];
+        StringBuffer sb = new StringBuffer(uuidStr);
+        sb.insert(8, UUID_SPLIT_REGEX);
+        sb.insert(13, UUID_SPLIT_REGEX);
+        sb.insert(18, UUID_SPLIT_REGEX);
+        sb.insert(23, UUID_SPLIT_REGEX);
+        return UUID.fromString(sb.toString());
+    }
 
 }
