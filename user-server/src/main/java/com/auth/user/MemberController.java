@@ -7,9 +7,9 @@ import com.auth.user.web.service.SignUpService;
 import feign.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @Slf4j
@@ -22,8 +22,9 @@ public class MemberController {
 
 
     @PostMapping("/signUp")
-    public void signUp(@RequestBody MemberCreateRequest request) {
+    public ResponseEntity signUp(@RequestBody MemberCreateRequest request) {
         signUpService.createMember(request);
+        return ResponseEntity.ok("ok");
     }
 
     @PostMapping("/login")

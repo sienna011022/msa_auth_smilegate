@@ -13,7 +13,7 @@ public class SignUpService {
 
     private final MemberRepository memberRepository;
 
-    @Transactional(readOnly = true)
+    @Transactional
     public void createMember(MemberCreateRequest request) {
         Member requestMember = request.toMember();
         memberRepository.save(requestMember);

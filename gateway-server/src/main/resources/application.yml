@@ -1,5 +1,14 @@
 server:
   port: 8088
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
 
 spring:
   application:
@@ -7,16 +16,17 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: user-server
-          uri: http://localhost:8080/
+        - id: USER_SERVER
+          uri: lb://USER-SERVER
           predicates:
             - Path=/user/**
           filters:
             - RewritePath=/user/(?<path>.*),/$\{path}
-        - id: auth-server
-          uri: http://localhost:8011/
+        - id: AUTH_SERVER
+          uri: lb://AUTH-SERVER
           predicates:
             - Path=/auth/**
           filters:
             - RewritePath=/auth/(?<path>.*),/$\{path}
+
 

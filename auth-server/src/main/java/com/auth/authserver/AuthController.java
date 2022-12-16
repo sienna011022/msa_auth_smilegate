@@ -1,6 +1,7 @@
 package com.auth.authserver;
 
 import com.auth.authserver.domain.JwtTokenFactory;
+import com.auth.authserver.web.TokenService;
 import com.auth.authserver.web.dto.LoginRequest;
 import com.auth.authserver.web.dto.ValidTokenRequest;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +15,11 @@ import java.util.Map;
 public class AuthController {
 
     private final JwtTokenFactory jwtTokenFactory;
+    private final TokenService tokenService;
 
-    @PostMapping("/newJwt")
+    @PostMapping("/createJwt")
     public Map<String, String> createJwt(@RequestBody LoginRequest loginRequest) {
-        Map<String, String> tokens = jwtTokenFactory.generateToken(loginRequest);
+        Map<String, String> tokens = tokenService.createJWT(loginRequest);
         return tokens;
     }
     @PostMapping("/validJwt")

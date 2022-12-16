@@ -9,7 +9,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class JwtTokenFactoryTest {
@@ -36,4 +38,14 @@ public class JwtTokenFactoryTest {
         assertThatThrownBy(() -> factory.isValidToken(new ValidTokenRequest(accessToken, "sienna10223")))
             .isInstanceOf(NotSameMemberException.class);
     }
+
+//    @Test
+//    @DisplayName("요청 온 token이 refresh token 일 경우 새로운 access token 발급")
+//    void refresh_token() {
+//        JwtTokenFactory factory = new JwtTokenFactory();
+//        LoginRequest loginRequest = new LoginRequest("sienna1022", "1022", Arrays.asList("ADMIN"));
+//        String refreshToken = factory.generateToken(loginRequest).get("refresh_token");
+//
+//        assertThat(factory.refresh(refreshToken)).isInstanceOf(Map.class);
+//    }
 }

@@ -1,11 +1,13 @@
 server:
   port: 8011
 spring:
+  profiles:
+    include: mysql
   application:
     name: auth-server
 eureka:
   instance:
-    hostname : auth-server
+    hostname: localhost
   client:
     register-with-eureka: true
     fetch-registry: true

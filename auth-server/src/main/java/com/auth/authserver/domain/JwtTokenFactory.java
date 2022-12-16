@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -18,6 +19,9 @@ import java.util.*;
 @RequiredArgsConstructor
 @Component
 public class JwtTokenFactory {
+    private static final String REFRESH_TOKEN = "refresh_token";
+    private static final String ACCESS_TOKEN = "access_token";
+    private static final String MEMBER_ID = "memberId";
     private static final long ACCESS_TOKEN_VALID_TIME = 30 * 60 * 1000L;
     private static final long REFRESH_TOKEN_VALID_TIME = 30 * 60 * 1000L * 5;
     private String secretKey = "thisIsSecretKey";
@@ -32,9 +36,9 @@ public class JwtTokenFactory {
         Map<String, String> tokens = new HashMap();
         Date now = new Date();
 
-        tokens.put("member_id", loginRequest.getMemberId());
-        tokens.put("access_token", makeAccessToken(claims, now));
-        tokens.put("refresh_token", makeRefreshToken(claims, now));
+        tokens.put(MEMBER_ID, loginRequest.getMemberId());
+        tokens.put(ACCESS_TOKEN, makeAccessToken(claims, now));
+        tokens.put(REFRESH_TOKEN, makeRefreshToken(claims, now));
 
         return tokens;
     }
@@ -75,6 +79,7 @@ public class JwtTokenFactory {
             throw new IllegalTokenException(exception.getMessage());
         }
     }
+
 
     private void isSameSubject(Jws<Claims> claims, String memberId) {
         if (claims.getBody().getSubject() != memberId) {
