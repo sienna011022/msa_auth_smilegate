@@ -22,11 +22,30 @@ spring:
             - Path=/user/**
           filters:
             - RewritePath=/user/(?<path>.*),/$\{path}
+
+
+        - id: AUTH_SERVER
+          uri: lb://AUTH-SERVER
+          predicates:
+            - Path=/auth/access
+          filters:
+            - RewritePath=/auth/(?<path>.*),/$\{path}
+            - name: CustomAuthFilter
+
+        - id: AUTH_SERVER
+          uri: lb://AUTH-SERVER
+          predicates:
+            - Path=/auth/refresh
+          filters:
+            - RewritePath=/auth/(?<path>.*),/$\{path}
+            - name: CustomAuthFilter
+
         - id: AUTH_SERVER
           uri: lb://AUTH-SERVER
           predicates:
             - Path=/auth/**
           filters:
             - RewritePath=/auth/(?<path>.*),/$\{path}
+
 
 
