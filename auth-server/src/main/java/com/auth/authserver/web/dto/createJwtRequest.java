@@ -3,22 +3,18 @@ package com.auth.authserver.web.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Getter
-public class LoginRequest {
+public class createJwtRequest {
 
     private String memberId;
-    private String password;
-    private List<String> roles = new ArrayList<>();
+    private List<String> roles;
 
     @Builder
-    public LoginRequest(String memberId, String password, List<String> roles) {
+    public createJwtRequest(String memberId, List<String> roles) {
         this.memberId = memberId;
-        this.password = password;
         this.roles = roles;
     }
 }

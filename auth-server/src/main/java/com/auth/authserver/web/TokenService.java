@@ -3,13 +3,14 @@ package com.auth.authserver.web;
 import com.auth.authserver.domain.JwtTokenFactory;
 import com.auth.authserver.domain.Token;
 import com.auth.authserver.domain.TokenRepository;
-import com.auth.authserver.web.dto.AccessTokenRequest;
-import com.auth.authserver.web.dto.LoginRequest;
 import com.auth.authserver.web.dto.RefreshTokenRequest;
+import com.auth.authserver.web.dto.createJwtRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -19,7 +20,7 @@ public class TokenService {
     private final JwtTokenFactory jwtTokenFactory;
     private final TokenRepository tokenRepository;
 
-    public Map<String, String> createJWT(LoginRequest loginRequest) {
+    public Map<String, String> createJWT(createJwtRequest loginRequest) {
         Map<String, String> tokens = jwtTokenFactory.generateTokens(loginRequest);
         Token refreshToken = Token.of(tokens.get(REFRESH_TOKEN));
         tokenRepository.save(refreshToken);
@@ -27,15 +28,16 @@ public class TokenService {
         return tokens;
     }
 
-    public void validAccessToken(AccessTokenRequest request) {
-        jwtTokenFactory.isValidToken(request.getAccessToken(), request.getMemberId());
+    public void validAccessToken(String accessToken, String userId) {
+        jwtTokenFactory.isValidToken(accessToken,userId);
     }
 
-    public String validRefreshToken(RefreshTokenRequest request) {
-        Token token = tokenRepository.findById(request.refreshToken()).orElseThrow(() -> new RuntimeException());
-        if (!jwtTokenFactory.isValidToken(token.token(), request.getMemberId())) {
+    public String validRefreshToken(UUID refreshToken, RefreshTokenRequest request) {
+        Token token = tokenRepository.findById(refreshToken).orElseThrow(() -> new RuntimeException());
+        if (!jwtTokenFactory.isValidToken(token.token(),request.getMemberId())) {
             tokenRepository.delete(token);
         }
+
         return jwtTokenFactory.updateToken(request);
     }
 

@@ -2,13 +2,10 @@ package com.auth.authserver.domain;
 
 import com.auth.authserver.exception.IllegalTokenException;
 import com.auth.authserver.exception.NotSameMemberException;
-import com.auth.authserver.web.dto.LoginRequest;
+import com.auth.authserver.web.dto.createJwtRequest;
 import com.auth.authserver.web.dto.RefreshTokenRequest;
 import io.jsonwebtoken.*;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -29,7 +26,7 @@ public class JwtTokenFactory {
         secretKey = Base64.getEncoder().encodeToString("${jwt.secretKey}".getBytes());
     }
 
-    public Map<String, String> generateTokens(LoginRequest request) {
+    public Map<String, String> generateTokens(createJwtRequest request) {
         Claims claims = makeClaims(request.getMemberId(), request.getRoles());
         Map<String, String> tokens = new HashMap();
         Date now = new Date();
@@ -42,7 +39,7 @@ public class JwtTokenFactory {
     }
 
     public String updateToken(RefreshTokenRequest request) {
-        Claims claims = makeClaims(request.getMemberId(), request.getRoles());
+        Claims claims = makeClaims(request.getMemberId(),request.getRoles());
         return makeAccessToken(claims, new Date());
     }
 
@@ -83,7 +80,6 @@ public class JwtTokenFactory {
             .signWith(SignatureAlgorithm.HS256, secretKey)
             .compact();
     }
-
 
     private void isSameSubject(Jws<Claims> claims, String memberId) {
         if (!claims.getBody().getSubject().equals(memberId)) {
