@@ -25,12 +25,6 @@ public class Token {
     @Column(columnDefinition = "BINARY(16)")
     private UUID uuid;
 
-    @CreatedDate
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
-
     public Token(String token) {
         this.token = token;
         this.uuid = createUUID();

@@ -102,22 +102,25 @@
 - [X] JWT access token 발급
 - [X] JWT refresh token 발급
 - [X] 요청 온 access token 유효성 검사
-- [ ] 요청 온 refresh token 유효성 검사
+- [X] 요청 온 refresh token 유효성 검사
 - [X] refresh Token 저장 시 UUID를 발급하여 PK로 지정
 - [X] 클라이언트에게 refresh Token이 아닌 UUID(DB의 PK)를 반환한다.
 - [X] 요청 온 UUID를 통해 DB접근 후 , refresh token 유효성을 검증한다.
-- [ ] 유효할 시 , access token 재발급
-- [ ] access token은 만료, refresh token은 유효 => access token 재발급
-- [ ] access token은 만료, refresh token 만료 => 둘 다 삭제 후 재 로그인
-- [ ] access token 유효 , refresh token 만료 =>  에러
-- [ ] access token은 유효 , refresh token 유효  => 인증 성공 
+- [X] 유효할 시 , access token 재발급
+- [X] access token은 만료, refresh token은 유효 => access token 재발급
+- [X] access token은 만료, refresh token 만료 => 둘 다 삭제 후 재 로그인
+- [X] access token 유효 , refresh token 만료 =>  에러
+- [X] access token은 유효 , refresh token 유효  => 인증 성공 
 
 * GateWay
 - [X] 각 모듈 라우팅
-- [ ] 요청 Header에서 JWT 존재 여부 검사
+- [X] 요청 Header에서 JWT 존재 여부 검사
 
 * Front Server
 - [X] 회원가입 페이지
 ![image](https://user-images.githubusercontent.com/90383376/206737250-a655a078-fcad-4798-9198-d5941219e568.png)
 - [ ] JWT 헤더에 포함 후 요청
 - [ ] 로그인 페이지
+
+* ETC
+- [ ] 상태 code 정의

@@ -11,9 +11,7 @@ import java.util.UUID;
 public class RefreshTokenRequest {
     private UUID refreshToken;
     private String memberId;
-
     private List<String> roles;
-
 
     public RefreshTokenRequest(UUID refreshToken, String memberId, List<String> roles) {
         this.refreshToken = refreshToken;
@@ -21,7 +19,7 @@ public class RefreshTokenRequest {
         this.roles = roles;
     }
 
-    public UUID refreshToken(){
+    public UUID refreshToken() {
         return refreshToken;
     }
 }
