@@ -9,9 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.ResponseEntity.status;
-
 
 @RestController
 @RequiredArgsConstructor
@@ -28,8 +29,8 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginRequest request) {
-        loginService.login(request);
-        return ok().build();
+        Map<String,String> tokens = loginService.login(request);
+        return  status(HttpStatus.CREATED).body(tokens);
     }
 
 }

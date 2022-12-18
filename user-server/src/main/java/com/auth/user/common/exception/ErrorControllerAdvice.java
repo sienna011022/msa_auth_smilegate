@@ -19,4 +19,10 @@ public class ErrorControllerAdvice {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
             .body(ErrorResponse.of(exception.getErrorType()));
     }
+
+    @ExceptionHandler(ExistsUserException.class)
+    protected ResponseEntity<ErrorResponse> existsUserException(ExistsUserException exception){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body(ErrorResponse.of(exception.getErrorType()));
+    }
 }

@@ -5,8 +5,11 @@ import com.auth.user.domain.MemberRepository;
 import com.auth.user.common.exception.NotFoundUserException;
 import com.auth.user.web.dto.LoginRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -16,7 +19,7 @@ public class LoginService {
 
     private final FeignCommunicator authCommunicator;
 
-    public String login(LoginRequest request) {
+    public Map<String,String> login(LoginRequest request) {
         Member member = findMember(request);
         member.isValid(request);
         return authCommunicator.createJwt(request);

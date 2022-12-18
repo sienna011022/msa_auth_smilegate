@@ -2,7 +2,7 @@ package com.auth.user.web.service;
 
 import com.auth.user.domain.Member;
 import com.auth.user.domain.MemberRepository;
-import com.auth.user.common.exception.DuplicateUserException;
+import com.auth.user.common.exception.ExistsUserException;
 import com.auth.user.web.dto.UserCreateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,8 +23,8 @@ public class SignUpService {
 
     @Transactional(readOnly = true)
     public void findMember(String memberId) {
-        memberRepository.findByMemberId(memberId)
-            .orElseThrow(DuplicateUserException::new);
+        if (memberRepository.existsByMemberId(memberId)) {
+            throw new ExistsUserException();
+        }
     }
-
 }

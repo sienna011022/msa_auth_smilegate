@@ -3,11 +3,11 @@ package com.auth.user.common.exception;
 import lombok.Getter;
 
 @Getter
-public class DuplicateUserException extends RuntimeException{
+public class ExistsUserException extends RuntimeException{
 
     private final ErrorType errorType;
 
-    public DuplicateUserException() {
+    public ExistsUserException() {
         this.errorType = ErrorType.DUPLICATE_USER;
     }
 }

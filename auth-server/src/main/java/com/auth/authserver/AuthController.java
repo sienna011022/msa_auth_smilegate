@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.Path;
 import java.util.Map;
 import java.util.UUID;
 
@@ -21,20 +22,19 @@ public class AuthController {
     private final TokenService tokenService;
 
     @PostMapping("/token")
-    public ResponseEntity createJwt(@RequestBody createJwtRequest request) {
-        Map<String, String> tokens = tokenService.createJWT(request);
-        return status(HttpStatus.CREATED).body(tokens);
+    public Map<String,String> createJwt(@RequestBody createJwtRequest request) {
+        return tokenService.createJWT(request);
     }
 
-    @PostMapping("/access")
-    public ResponseEntity validJwt(@RequestHeader(value = "Authorization") String accessToken, @RequestHeader(value = "UserId") String userId) {
+    @PostMapping("/access/{userId}")
+    public ResponseEntity validJwt(@RequestHeader(value = "Authorization") String accessToken, @PathVariable String userId) {
         tokenService.validAccessToken(accessToken, userId);
         return ok().build();
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity validRefreshToken(@RequestHeader(value = "Authorization") UUID refreshToken,@RequestBody RefreshTokenRequest request) {
-        tokenService.validRefreshToken(refreshToken,request);
+    public ResponseEntity validRefreshToken(@RequestHeader(value = "Authorization") UUID refreshToken, @RequestBody RefreshTokenRequest request) {
+        tokenService.validRefreshToken(refreshToken, request);
         return ok().build();
     }
 
