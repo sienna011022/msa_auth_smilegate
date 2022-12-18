@@ -11,6 +11,6 @@ public interface FeignCommunicator {
 
     @RequestMapping(
         method = RequestMethod.POST,
-        value = "/auth/createJwt")
+        value = "/auth/token")
     String createJwt(@RequestBody LoginRequest request);
 }

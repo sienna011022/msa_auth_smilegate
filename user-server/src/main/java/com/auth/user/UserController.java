@@ -1,35 +1,35 @@
 package com.auth.user;
 
 import com.auth.user.web.dto.LoginRequest;
-import com.auth.user.web.dto.MemberCreateRequest;
+import com.auth.user.web.dto.UserCreateRequest;
 import com.auth.user.web.service.LoginService;
 import com.auth.user.web.service.SignUpService;
-import feign.Response;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.http.ResponseEntity.ok;
+import static org.springframework.http.ResponseEntity.status;
+
 
 @RestController
-@Slf4j
 @RequiredArgsConstructor
-@RequestMapping(value = "/members")
-public class MemberController {
+public class UserController {
 
     private final SignUpService signUpService;
     private final LoginService loginService;
 
-
-    @PostMapping("/signUp")
-    public ResponseEntity signUp(@RequestBody MemberCreateRequest request) {
-        signUpService.createMember(request);
-        return ResponseEntity.ok("ok");
+    @PostMapping("/signup")
+    public ResponseEntity signUp(@RequestBody UserCreateRequest request) {
+        signUpService.createUser(request);
+        return status(HttpStatus.CREATED).build();
     }
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginRequest request) {
-        return ResponseEntity.ok(loginService.login(request));
+        loginService.login(request);
+        return ok().build();
     }
 
 }

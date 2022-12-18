@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class MemberCreateRequest {
+public class UserCreateRequest {
 
     private String memberId;
 
@@ -21,7 +21,7 @@ public class MemberCreateRequest {
     private Role role;
 
     @Builder
-    public MemberCreateRequest(String memberId, String password, String name, String email, Role role) {
+    public UserCreateRequest(String memberId, String password, String name, String email, Role role) {
         this.memberId = memberId;
         this.password = password;
         this.name = name;

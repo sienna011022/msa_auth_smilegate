@@ -1,5 +1,6 @@
 package com.auth.authserver.web;
 
+import com.auth.authserver.common.exception.IllegalTokenException;
 import com.auth.authserver.domain.JwtTokenFactory;
 import com.auth.authserver.domain.Token;
 import com.auth.authserver.domain.TokenRepository;
@@ -8,7 +9,6 @@ import com.auth.authserver.web.dto.createJwtRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -33,7 +33,9 @@ public class TokenService {
     }
 
     public String validRefreshToken(UUID refreshToken, RefreshTokenRequest request) {
-        Token token = tokenRepository.findById(refreshToken).orElseThrow(() -> new RuntimeException());
+        Token token = tokenRepository.findById(refreshToken)
+            .orElseThrow(() -> new IllegalTokenException("서버에 저장된 토큰의 정보를 확인할 수 없습니다"));
+
         if (!jwtTokenFactory.isValidToken(token.token(),request.getMemberId())) {
             tokenRepository.delete(token);
         }

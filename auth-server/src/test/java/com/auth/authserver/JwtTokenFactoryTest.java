@@ -1,8 +1,8 @@
 package com.auth.authserver;
 
 import com.auth.authserver.domain.JwtTokenFactory;
-import com.auth.authserver.exception.IllegalTokenException;
-import com.auth.authserver.exception.NotSameMemberException;
+import com.auth.authserver.common.exception.IllegalTokenException;
+import com.auth.authserver.common.exception.IllegalUserException;
 import com.auth.authserver.web.dto.createJwtRequest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -34,8 +34,8 @@ public class JwtTokenFactoryTest {
         createJwtRequest loginRequest = new createJwtRequest("sienna1022",Arrays.asList("ADMIN"));
         String accessToken = factory.generateTokens(loginRequest).get("access_token");
 
-        assertThatThrownBy(() -> factory.isValidToken(accessToken, "sienna1022"))
-            .isInstanceOf(NotSameMemberException.class);
+        assertThatThrownBy(() -> factory.isValidToken(accessToken, "sienna"))
+            .isInstanceOf(IllegalUserException.class);
     }
 
     @Test

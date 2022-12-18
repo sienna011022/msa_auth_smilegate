@@ -2,7 +2,7 @@ package com.auth.user.web.service;
 
 import com.auth.user.domain.Member;
 import com.auth.user.domain.MemberRepository;
-import com.auth.user.exception.NotFoundUserException;
+import com.auth.user.common.exception.NotFoundUserException;
 import com.auth.user.web.dto.LoginRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +25,6 @@ public class LoginService {
     @Transactional
     public Member findMember(LoginRequest request){
         return memberRepository.findByMemberId(request.getMemberId())
-            .orElseThrow(() -> new NotFoundUserException("일치하는 회원정보가 없습니다"));
+            .orElseThrow(() -> new NotFoundUserException());
     }
 }

@@ -1,7 +1,7 @@
 package com.auth.authserver.domain;
 
-import com.auth.authserver.exception.IllegalTokenException;
-import com.auth.authserver.exception.NotSameMemberException;
+import com.auth.authserver.common.exception.IllegalTokenException;
+import com.auth.authserver.common.exception.IllegalUserException;
 import com.auth.authserver.web.dto.createJwtRequest;
 import com.auth.authserver.web.dto.RefreshTokenRequest;
 import io.jsonwebtoken.*;
@@ -44,14 +44,13 @@ public class JwtTokenFactory {
     }
 
     public boolean isValidToken(String token, String memberId) {
-        try {
-            Jws<Claims> claims = Jwts.parser()
+        try {Jws<Claims> claims = Jwts.parser()
                 .setSigningKey(secretKey)
                 .parseClaimsJws(token);
             isSameSubject(claims, memberId);
             return true;
         } catch (ExpiredJwtException exception) {
-            throw new IllegalTokenException("토큰 유효시간이 만료 되었습니다");
+            throw new IllegalTokenException("토큰의 유효기간이 만료되었습니다");
         }
     }
 
@@ -83,7 +82,7 @@ public class JwtTokenFactory {
 
     private void isSameSubject(Jws<Claims> claims, String memberId) {
         if (!claims.getBody().getSubject().equals(memberId)) {
-            throw new NotSameMemberException("요청하신 토큰과 다른 사용자입니다");
+            throw new IllegalUserException();
         }
     }
 

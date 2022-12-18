@@ -3,12 +3,12 @@ package com.auth.user;
 import com.auth.user.domain.Member;
 import com.auth.user.domain.Role;
 import com.auth.user.web.dto.LoginRequest;
-import com.auth.user.web.dto.MemberCreateRequest;
+import com.auth.user.web.dto.UserCreateRequest;
 
 public class MemberFixture {
 
-    public static MemberCreateRequest memberCreateRequest() {
-        MemberCreateRequest request = MemberCreateRequest.builder()
+    public static UserCreateRequest memberCreateRequest() {
+        UserCreateRequest request = UserCreateRequest.builder()
             .memberId("sienna1022")
             .name("kimSungYoon")
             .email("sienna011022@naver.com")
