@@ -18,8 +18,8 @@ public class JwtTokenFactory {
     private static final String REFRESH_TOKEN = "refresh_token";
     private static final String ACCESS_TOKEN = "access_token";
     private static final String MEMBER_ID = "member_id";
-    private static final long ACCESS_TOKEN_VALID_TIME = 30 * 60 * 1000L;
-    private static final long REFRESH_TOKEN_VALID_TIME = 30 * 60 * 1000L * 5;
+    private static final long ACCESS_TOKEN_VALID_TIME = 30 * 60;
+    private static final long REFRESH_TOKEN_VALID_TIME = 60 * 60 * 24 * 30;
     private String secretKey;
 
     public JwtTokenFactory(){

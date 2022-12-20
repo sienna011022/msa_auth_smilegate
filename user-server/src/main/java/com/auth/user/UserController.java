@@ -32,5 +32,4 @@ public class UserController {
         Map<String,String> tokens = loginService.login(request);
         return  status(HttpStatus.CREATED).body(tokens);
     }
-
 }
