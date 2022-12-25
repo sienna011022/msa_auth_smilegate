@@ -33,12 +33,12 @@ export default function SignUpPage() {
 
     const signUp = () => {
         if (validPassword()) {
-            axios.post("user/members/signUp", {
+            axios.post("/user/signup", {
                 email: email,
                 name: name,
                 password: password,
                 memberId: memberId,
-            }).then(r => console.log(r))
+            }).then(r => {return r.json()})
         } else {
             alert("비밀번호와 비밀번호 확인은 일치해야합니다")
         }

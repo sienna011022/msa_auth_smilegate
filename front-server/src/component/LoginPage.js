@@ -1,37 +1,52 @@
-
+import {useState} from "react";
 import "./LoginPage.css"
-import { useNavigate } from 'react-router';
-import {setRefreshToken} from "../storage/Cookie";
-import {SET_TOKEN} from "../storage/Auth";
+import axios from "axios";
+import {useNavigate} from "react-router";
 import {useDispatch} from "react-redux";
-import {loginUser} from "../api/Users";
+import {setRefreshToken} from "../storage/Cookie";
+import {SET_TOKEN} from "../store/Auth";
 
-function Login() {
-    const navigate = useNavigate();
+export default function LoginPage() {
     const dispatch = useDispatch();
+    const [memberId, setMemberId] = useState("")
+    const [password, setPassword] = useState("")
 
-    // useForm 사용을 위한 선언
-    const {register, setValue, formState: {errors}, handleSubmit} = useForm();
+    const onMemberIdHandler = (event) => {
+        setMemberId(event.currentTarget.value)
+    }
+    const onPasswordHandler = (event) => {
+        setPassword(event.currentTarget.value)
+    }
 
-    // submit 이후 동작할 코드
-    // 백으로 유저 정보 전달
-    const onValid = async ({userid, password}) => {
-        // input 태그 값 비워주는 코드
-        setValue("password", "");
 
-        // 백으로부터 받은 응답
-        const response = await loginUser({userid, password});
-
-        if (response.status) {
-            // 쿠키에 Refresh Token, store에 Access Token 저장
-            setRefreshToken(response.json.refresh_token);
-            dispatch(SET_TOKEN(response.json.access_token));
-
-            return navigate("/");
-        } else {
-            console.log(response.json);
+    function joinHandler() {
+        try {
+            let data = {memberId: memberId, password: password};
+            axios.post("/user/login", JSON.stringify(data), {
+                headers: {
+                    "Content-Type": `application/json`,
+                }
+            })
+                .then(response => {
+                    if (response.status) {
+                        setRefreshToken(response.data.refresh_token);
+                        dispatch(SET_TOKEN(response.data.access_token));
+                    } else {
+                        console.log(response.data)
+                    }
+                })
+                .catch(ex => {
+                    console.log("login requset fail : " + ex);
+                })
+                .finally(() => {
+                    console.log("login request end")
+                });
+        } catch (e) {
+            console.log(e);
         }
-    };
+
+
+    }
 
 
     return (
@@ -50,3 +65,4 @@ function Login() {
         </div>
     )
 }
+
