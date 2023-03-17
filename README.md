@@ -2,11 +2,7 @@
 
 ## ✨인증 시스템
 
-> SmileGate Winter Dev Camp 개인 프로젝트 중 김성윤의 인증 시스템을 구현하고자 합니다.
-
-- 12/25일까지  목표로한 로직은 구현하였으나 , 세부적인 예외 처리 및 프론트 페이지를 꾸미지 못했습니다
-- 백엔드에 중점을 두어 코드 리뷰 부탁 드립니다
-- 더불어 인증 시스템을 구축하며 게이트웨이에서 인증을 처리하지 않는 것에 한계를 느껴, 리팩토링 예정입니다. 다만 기능상에는 현재 로직이 문제가 없습니다.
+> SmileGate Winter Dev Camp 개인 프로젝트 중 김성윤의 인증 시스템
 
 [https://github.com/sienna011022/msa_auth_smilegate.git](https://github.com/sienna011022/msa_auth_smilegate.git)
 
